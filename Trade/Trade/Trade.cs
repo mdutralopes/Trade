@@ -11,7 +11,7 @@ namespace Trade
         private double _Value;
         private string _ClientSector;
         private DateTime _NextPaymentDate;
-        private IRiskCategory _risk;
+        private RiskCategory _risk;
         
         public Trade (double Value, string ClientSector, DateTime NextPaymentDate, RiskCategory risk)
         {
