@@ -22,6 +22,7 @@ namespace Trade
             List <Trade> Trades = new List<Trade>();
             List <string> Lines = new List<string>();
             List <RiskCategory> Risks = new List<RiskCategory>();
+            RiskCategory Risk;
             DateTime dateRef;
             int numTrades = 0;
             string[] lineValues;
@@ -34,7 +35,7 @@ namespace Trade
             {
                 Lines.Add(Console.ReadLine());
             }
-
+            
             // creating trades 
             foreach(string line in Lines)
             {
@@ -42,20 +43,16 @@ namespace Trade
                 double Value = Convert.ToDouble(lineValues[0]);
                 string ClientSector = lineValues[1];
                 DateTime NextPaymentDate = ConvertDate(lineValues[2]);
-                Trades.Add(new Trade(Value, ClientSector, NextPaymentDate));              
+                Risk = new RiskCategory(Value, ClientSector, NextPaymentDate, dateRef);
+                Trades.Add(new Trade(Value, ClientSector, NextPaymentDate, Risk));              
             }
 
-            // creating risks categories
+            // printing risks categories
             foreach(Trade trade in Trades)
             {
-                Risks.Add(new RiskCategory(trade, dateRef));
+               Console.WriteLine(trade.riskTrade);
             }
 
-            // printing categories
-            foreach(RiskCategory risk in Risks)
-            {
-                Console.WriteLine(risk.riskDescription);
-            }
             Console.ReadLine();
         }
     }

@@ -11,12 +11,14 @@ namespace Trade
         private double _Value;
         private string _ClientSector;
         private DateTime _NextPaymentDate;
+        private IRiskCategory _risk;
         
-        public Trade (double Value, string ClientSector, DateTime NextPaymentDate)
+        public Trade (double Value, string ClientSector, DateTime NextPaymentDate, RiskCategory risk)
         {
             _Value = Value;
             _ClientSector = ClientSector;
             _NextPaymentDate = NextPaymentDate;
+            _risk = risk;
         }
 
         public double Value
@@ -34,5 +36,9 @@ namespace Trade
             get { return this._NextPaymentDate; }
         }
        
+        public string riskTrade
+        {
+            get { return _risk.riskDescription; }
+        }
     }
 }

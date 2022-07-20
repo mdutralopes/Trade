@@ -6,27 +6,29 @@ using System.Threading.Tasks;
 
 namespace Trade
 {
-    class RiskCategory
+    class RiskCategory : IRiskCategory
     {
         private string[] riskArr = { "EXPIRED", "HIGHRISK", "MEDIUMRISK" };
         private enum riskCat { EXPIRED, HIGHRISK, MEDIUMRISK };
-        private Trade _trade;
+        private DateTime _NextPaymentDate;
+        private string _ClientSector;
+        private double _Value;
         private DateTime _DateRef;
 
         private bool IsExpired()
         {
-            TimeSpan dateDiff = _DateRef - _trade.NextPaymentDate;
+            TimeSpan dateDiff = _DateRef - _NextPaymentDate;
             return (dateDiff.Days > 30);
         }
 
         private bool IsHighRisk()
         {
-            return ((_trade.Value > 1000000) & (_trade.ClientSector == "Private"));
+            return ((_Value > 1000000) & (_ClientSector == "Private"));
         }
         
         private bool IsMediumRisk()
         {
-            return ((_trade.Value > 1000000) & (_trade.ClientSector == "Public"));
+            return ((_Value > 1000000) & (_ClientSector == "Public"));
         }
 
         private string calculateRiskCategory()
@@ -54,9 +56,11 @@ namespace Trade
             return "DEFAULT";
         }
 
-        public RiskCategory (Trade trade, DateTime DateRef)
+        public RiskCategory (double Value, string ClientSector, DateTime NextPaymentDate, DateTime DateRef)
         {
-            _trade = trade;
+            _Value = Value;
+            _ClientSector = ClientSector;
+            _NextPaymentDate = NextPaymentDate;
             _DateRef = DateRef;
         }  
 
