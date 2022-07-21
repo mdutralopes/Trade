@@ -21,14 +21,12 @@ namespace Trade
         {
             List <Trade> Trades = new List<Trade>();
             List <string> Lines = new List<string>();
-            List <RiskCategory> Risks = new List<RiskCategory>();
-            RiskCategory Risk;
+            IRiskCategory Risk;
             DateTime dateRef;
             int numTrades = 0;
             string[] lineValues;
 
             // reading input
-            // dateRef = Convert.ToDateTime(Console.ReadLine());
             dateRef = ConvertDate(Console.ReadLine());
             numTrades = Convert.ToInt16(Console.ReadLine());
             for (int i = 0; i < numTrades; i++ )
