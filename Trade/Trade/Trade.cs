@@ -11,9 +11,9 @@ namespace Trade
         private double _Value;
         private string _ClientSector;
         private DateTime _NextPaymentDate;
-        private RiskCategory _risk;
+        private IRiskCategory _risk;
         
-        public Trade (double Value, string ClientSector, DateTime NextPaymentDate, RiskCategory risk)
+        public Trade (double Value, string ClientSector, DateTime NextPaymentDate, IRiskCategory risk)
         {
             _Value = Value;
             _ClientSector = ClientSector;
